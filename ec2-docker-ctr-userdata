@@ -1,0 +1,34 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+
+    }
+  }
+}
+
+# Configure the AWS Provider
+provider "aws" {
+  region = "ca-central-1"
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-0a2e7efb4257c0907"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "HelloWorldinstance"
+  }
+
+  vpc_security_group_ids = ["sg-0601f3003c2358d13"]
+  user_data              = <<EOF
+  #!/bin/bash
+  apt update 
+  apt install docker.io -y
+  service docker start
+  docker pull nginx:latest
+  docker run -d --name my-first-container -p 80:80 nginx:latest
+  EOF
+
+
+}
