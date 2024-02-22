@@ -17,3 +17,21 @@ variable "instance_type" {
     medium = "t2.medium"
   }
 }
+
+# count variable is used
+/*
+variable "ami_id" {
+  description = "this is for ami variable"
+  default = "ami-0156b61643fdfee5c" #ubuntu
+  
+}
+
+variable "instance_type" {
+  description = "The instance type to use"
+  type        = string
+  default     = "t2.micro"
+}
+
+variable "aws-instance-count" {
+  default = 3
+}  */
